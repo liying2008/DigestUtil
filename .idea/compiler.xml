@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+      <entry name="!*.mps" />
+      <entry name="!*.mpsr" />
+      <entry name="!*.model" />
+    </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="digest-util_main" target="1.8" />
+      <module name="digest-util_test" target="1.8" />
+      <module name="DigestUtil_main" target="1.8" />
+      <module name="DigestUtil_test" target="1.8" />
+      <module name="sample_main" target="1.8" />
+      <module name="sample_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
