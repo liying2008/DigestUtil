@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DigestUtil.iml" filepath="$PROJECT_DIR$/DigestUtil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil-digest-util.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil-digest-util.iml" group="digest-util" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/digest-util.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/digest-util.iml" group="digest-util" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/digest-util_main.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/digest-util_main.iml" group="digest-util" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/digest-util_test.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/digest-util_test.iml" group="digest-util" />

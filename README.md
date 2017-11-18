@@ -8,7 +8,7 @@ DigestUtil
 ----
 ## Use Gradle  
 ```gradle  
-compile 'cc.duduhuo.util:digest-util:1.0.0'
+compile 'cc.duduhuo.util:digest-util:1.0.1'
 ```
 
 ## Or Maven  
@@ -16,7 +16,7 @@ compile 'cc.duduhuo.util:digest-util:1.0.0'
 <dependency>
   <groupId>cc.duduhuo.util</groupId>
   <artifactId>digest-util</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
@@ -28,7 +28,7 @@ compile 'cc.duduhuo.util:digest-util:1.0.0'
 apply plugin: 'kotlin'
 
 buildscript {
-    ext.kotlin_version = '1.1.51'
+    ext.kotlin_version = '1.1.60'
 
     repositories {
         mavenCentral()
@@ -115,7 +115,7 @@ System.out.println("DES decrypt = " + d2);
 
 日期(Date)
 ----
-2017-11-10
+2017-11-18
 
 License
 ----

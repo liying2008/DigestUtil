@@ -1,8 +1,7 @@
 package cc.duduhuo.util.crypto
 
-import sun.misc.BASE64Decoder
-import sun.misc.BASE64Encoder
-import java.security.SecureRandom
+import cc.duduhuo.util.digest.Base64
+import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.DESKeySpec
@@ -18,7 +17,7 @@ import javax.crypto.spec.DESKeySpec
  */
 object DES {
     private const val ALGORITHM = "DES"
-
+    private const val TRANSFORMATION = "DES"
     /**
      * Encrypts a password.
      * @param input The password to be encrypted.
@@ -28,8 +27,8 @@ object DES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: ByteArray, key: ByteArray): String {
-        val bt = toEncrypt(input, key)
-        return BASE64Encoder().encode(bt)
+        val bt = toEncrypt(input, Arrays.copyOf(key, 16))
+        return Base64.encode(bt)
     }
 
     /**
@@ -41,8 +40,8 @@ object DES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: ByteArray, key: String): String {
-        val bt = toEncrypt(input, key.toByteArray(Charsets.UTF_8))
-        return BASE64Encoder().encode(bt)
+        val bt = toEncrypt(input, Arrays.copyOf(key.toByteArray(), 16))
+        return Base64.encode(bt)
     }
 
     /**
@@ -54,8 +53,8 @@ object DES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: String, key: ByteArray): String {
-        val bt = toEncrypt(input.toByteArray(Charsets.UTF_8), key)
-        return BASE64Encoder().encode(bt)
+        val bt = toEncrypt(input.toByteArray(), Arrays.copyOf(key, 16))
+        return Base64.encode(bt)
     }
 
     /**
@@ -67,8 +66,8 @@ object DES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: String, key: String): String {
-        val bt = toEncrypt(input.toByteArray(Charsets.UTF_8), key.toByteArray(Charsets.UTF_8))
-        return BASE64Encoder().encode(bt)
+        val bt = toEncrypt(input.toByteArray(), Arrays.copyOf(key.toByteArray(), 16))
+        return Base64.encode(bt)
     }
 
     /**
@@ -80,9 +79,8 @@ object DES {
     @JvmStatic
     @Throws(Exception::class)
     fun decrypt(input: String, key: ByteArray): String {
-        val decoder = BASE64Decoder()
-        val buf = decoder.decodeBuffer(input)
-        val bt = toDecrypt(buf, key)
+        val buf = Base64.decode(input)
+        val bt = toDecrypt(buf, Arrays.copyOf(key, 16))
         return String(bt)
     }
 
@@ -95,31 +93,28 @@ object DES {
     @JvmStatic
     @Throws(Exception::class)
     fun decrypt(input: String, key: String): String {
-        val decoder = BASE64Decoder()
-        val buf = decoder.decodeBuffer(input)
-        val bt = toDecrypt(buf, key.toByteArray(Charsets.UTF_8))
+        val buf = Base64.decode(input)
+        val bt = toDecrypt(buf, Arrays.copyOf(key.toByteArray(), 16))
         return String(bt)
     }
 
     @Throws(Exception::class)
     private fun toEncrypt(data: ByteArray, key: ByteArray): ByteArray {
-        val sr = SecureRandom()
         val dks = DESKeySpec(key)
         val keyFactory = SecretKeyFactory.getInstance(ALGORITHM)
         val sKey = keyFactory.generateSecret(dks)
-        val cipher = Cipher.getInstance(ALGORITHM)
-        cipher.init(Cipher.ENCRYPT_MODE, sKey, sr)
+        val cipher = Cipher.getInstance(TRANSFORMATION)
+        cipher.init(Cipher.ENCRYPT_MODE, sKey)
         return cipher.doFinal(data)
     }
 
     @Throws(Exception::class)
     private fun toDecrypt(data: ByteArray, key: ByteArray): ByteArray {
-        val sr = SecureRandom()
         val dks = DESKeySpec(key)
         val keyFactory = SecretKeyFactory.getInstance(ALGORITHM)
         val sKey = keyFactory.generateSecret(dks)
-        val cipher = Cipher.getInstance(ALGORITHM)
-        cipher.init(Cipher.DECRYPT_MODE, sKey, sr)
+        val cipher = Cipher.getInstance(TRANSFORMATION)
+        cipher.init(Cipher.DECRYPT_MODE, sKey)
         return cipher.doFinal(data)
     }
 }

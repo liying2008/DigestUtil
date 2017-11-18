@@ -1,9 +1,9 @@
 package cc.duduhuo.util.crypto
 
 import cc.duduhuo.util.digest.Base64
-import java.security.SecureRandom
+import java.util.*
 import javax.crypto.Cipher
-import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
 
 /**
@@ -16,6 +16,7 @@ import javax.crypto.spec.SecretKeySpec
  */
 object AES {
     private const val ALGORITHM = "AES"
+    private const val TRANSFORMATION = "AES"
     /**
      * Encrypts a password.
      * @param input The password to be encrypted.
@@ -25,7 +26,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: ByteArray, seed: ByteArray): String {
-        val key = getRawKey(seed)
+        val key = getRawKey(Arrays.copyOf(seed, 16))
         val result = toEncrypt(key, input)
         return Base64.encode(result)
     }
@@ -39,7 +40,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: String, seed: ByteArray): String {
-        val key = getRawKey(seed)
+        val key = getRawKey(Arrays.copyOf(seed, 16))
         val result = toEncrypt(key, input.toByteArray())
         return Base64.encode(result)
     }
@@ -53,7 +54,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: ByteArray, seed: String): String {
-        val key = getRawKey(seed.toByteArray())
+        val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val result = toEncrypt(key, input)
         return Base64.encode(result)
     }
@@ -67,7 +68,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun encrypt(input: String, seed: String): String {
-        val key = getRawKey(seed.toByteArray())
+        val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val result = toEncrypt(key, input.toByteArray())
         return Base64.encode(result)
     }
@@ -81,7 +82,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun decrypt(input: ByteArray, seed: ByteArray): String {
-        val key = getRawKey(seed)
+        val key = getRawKey(Arrays.copyOf(seed, 16))
         val encrypted = Base64.decode(input)
         val result = toDecrypt(key, encrypted)
         return String(result)
@@ -96,7 +97,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun decrypt(input: String, seed: ByteArray): String {
-        val key = getRawKey(seed)
+        val key = getRawKey(Arrays.copyOf(seed, 16))
         val encrypted = Base64.decode(input)
         val result = toDecrypt(key, encrypted)
         return String(result)
@@ -111,7 +112,7 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun decrypt(input: ByteArray, seed: String): String {
-        val key = getRawKey(seed.toByteArray())
+        val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val encrypted = Base64.decode(input)
         val result = toDecrypt(key, encrypted)
         return String(result)
@@ -126,34 +127,26 @@ object AES {
     @JvmStatic
     @Throws(Exception::class)
     fun decrypt(input: String, seed: String): String {
-        val key = getRawKey(seed.toByteArray())
+        val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val encrypted = Base64.decode(input)
         val result = toDecrypt(key, encrypted)
         return String(result)
     }
 
     @Throws(Exception::class)
-    private fun getRawKey(seed: ByteArray): ByteArray {
-        val kGen = KeyGenerator.getInstance(ALGORITHM)
-        val sr = SecureRandom(seed)
-        kGen.init(128, sr)
-        val key = kGen.generateKey()
-        return key.encoded
-    }
+    private fun getRawKey(seed: ByteArray): SecretKey = SecretKeySpec(seed, ALGORITHM)
 
     @Throws(Exception::class)
-    private fun toEncrypt(key: ByteArray, input: ByteArray): ByteArray {
-        val sKeySpec = SecretKeySpec(key, ALGORITHM)
-        val cipher = Cipher.getInstance(ALGORITHM)
-        cipher.init(Cipher.ENCRYPT_MODE, sKeySpec)
+    private fun toEncrypt(key: SecretKey, input: ByteArray): ByteArray {
+        val cipher = Cipher.getInstance(TRANSFORMATION)
+        cipher.init(Cipher.ENCRYPT_MODE, key)
         return cipher.doFinal(input)
     }
 
     @Throws(Exception::class)
-    private fun toDecrypt(key: ByteArray, encrypted: ByteArray): ByteArray {
-        val sKeySpec = SecretKeySpec(key, ALGORITHM)
-        val cipher = Cipher.getInstance(ALGORITHM)
-        cipher.init(Cipher.DECRYPT_MODE, sKeySpec)
+    private fun toDecrypt(key: SecretKey, encrypted: ByteArray): ByteArray {
+        val cipher = Cipher.getInstance(TRANSFORMATION)
+        cipher.init(Cipher.DECRYPT_MODE, key)
         return cipher.doFinal(encrypted)
     }
 }
