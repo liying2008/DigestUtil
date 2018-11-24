@@ -1,5 +1,7 @@
 package cc.duduhuo.util.digest
 
+import java.io.File
+import java.io.IOException
 import java.nio.charset.Charset
 
 /**
@@ -29,7 +31,7 @@ object Base64 {
      */
     @JvmStatic
     fun encode(src: ByteArray): String {
-        return java.util.Base64.getEncoder().encodeToString(src)
+        return borrow.android.util.Base64.encodeToString(src, borrow.android.util.Base64.DEFAULT)
     }
 
     /**
@@ -43,7 +45,7 @@ object Base64 {
      */
     @JvmStatic
     fun encodeByteArray(src: ByteArray): ByteArray {
-        return java.util.Base64.getEncoder().encode(src)
+        return borrow.android.util.Base64.encode(src, borrow.android.util.Base64.DEFAULT)
     }
 
     /**
@@ -62,7 +64,29 @@ object Base64 {
      */
     @JvmStatic
     fun decode(src: String): ByteArray {
-        return java.util.Base64.getDecoder().decode(src)
+        return borrow.android.util.Base64.decode(src, borrow.android.util.Base64.DEFAULT)
+    }
+
+    /**
+     * Decodes a Base64 encoded String into a newly-allocated byte array
+     * using the {@link Base64} encoding scheme.
+     *
+     * <p> An invocation of this method has exactly the same effect as invoking
+     * {@code decode(src.getBytes(StandardCharsets.ISO_8859_1))}
+     *
+     * @param   src the string to decode
+     * @param   file the file to be write
+     *
+     * @return  A newly-allocated byte array containing the decoded bytes.
+     *
+     * @throws  IllegalArgumentException
+     *          if {@code src} is not in valid Base64 scheme
+     */
+    @Throws(IOException::class)
+    @JvmStatic
+    fun decodeToFile(src: String, file: File) {
+        val data = borrow.android.util.Base64.decode(src, borrow.android.util.Base64.DEFAULT)
+        file.writeBytes(data)
     }
 
     /**
@@ -79,7 +103,27 @@ object Base64 {
      */
     @JvmStatic
     fun decode(src: ByteArray): ByteArray {
-        return java.util.Base64.getDecoder().decode(src)
+        return borrow.android.util.Base64.decode(src, borrow.android.util.Base64.DEFAULT)
+    }
+
+    /**
+     * Decodes all bytes from the input byte array using the {@link Base64}
+     * encoding scheme, writing the results into a newly-allocated output
+     * byte array. The returned byte array is of the length of the resulting
+     * bytes.
+     *
+     * @param   src the byte array to decode
+     * @param   file the file to be write
+     * @return  A newly-allocated byte array containing the decoded bytes.
+     *
+     * @throws  IllegalArgumentException
+     *          if {@code src} is not in valid Base64 scheme
+     */
+    @Throws(IOException::class)
+    @JvmStatic
+    fun decodeToFile(src: ByteArray, file: File) {
+        val data = borrow.android.util.Base64.decode(src, borrow.android.util.Base64.DEFAULT)
+        file.writeBytes(data)
     }
 
     /**
@@ -93,6 +137,17 @@ object Base64 {
     @JvmOverloads
     fun encode(src: String, charset: Charset = Charsets.UTF_8): String {
         return encode(src.toByteArray(charset))
+    }
+
+    /**
+     * Encodes the specified File into a String using the {@link Base64}
+     * encoding scheme.
+     * @param src the file to encode.
+     * @return  A String containing the resulting Base64 encoded characters.
+     */
+    @JvmStatic
+    fun encode(src: File): String {
+        return encode(src.readBytes())
     }
 
     /**

@@ -5,8 +5,8 @@ version '1.0.0'
 apply plugin: 'kotlin'
 
 dependencies {
-    compile project(':digest-util')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    implementation project(':digest-util')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 compileKotlin {

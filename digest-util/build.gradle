@@ -1,9 +1,9 @@
 def _groupId = 'cc.duduhuo.util'
-def _version = '1.0.1'
+def _version = '1.1.0'
 def _artifactId = 'digest-util'
 def _gitUrl = 'https://github.com/liying2008/DigestUtil.git'
 def _repoName = 'DigestUtil'
-def _desc = 'A DigestUtil library written in Kotlin (For Java)'
+def _desc = 'A DigestUtil library written in Kotlin (For Java and Android)'
 
 group _groupId
 version _version
@@ -15,7 +15,7 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'org.jetbrains.dokka'
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 compileKotlin {

@@ -2,6 +2,8 @@ package cc.duduhuo.sample
 
 import cc.duduhuo.util.crypto.AES
 import cc.duduhuo.util.crypto.DES
+import cc.duduhuo.util.digest.Base64
+import cc.duduhuo.util.digest.CRC32
 import cc.duduhuo.util.digest.Digest
 
 /**
@@ -13,6 +15,9 @@ import cc.duduhuo.util.digest.Digest
  * =======================================================
  */
 fun main(args: Array<String>) {
+    println("============== Base64 ==============")
+    println("base64 = " + Base64.encode("abc"))
+
     println("============== Digest ==============")
     println("md2 = " + Digest.md2Hex("abc", true))
     println("md5 = " + Digest.md5Hex("abc", true))
@@ -22,6 +27,9 @@ fun main(args: Array<String>) {
     println("sha384 = " + Digest.sha384Hex("abc", true))
     println("sha512 = " + Digest.sha512Hex("abc", true))
     println("hex = " + Digest.hex("abc", true))
+
+    println("============== CRC32 ==============")
+    println("crc32 = " + CRC32.getValue("abc"))
 
     println("============== AES ==============")
     val input1 = "abc"

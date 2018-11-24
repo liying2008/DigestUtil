@@ -2,6 +2,8 @@ package cc.duduhuo.sample;
 
 import cc.duduhuo.util.crypto.AES;
 import cc.duduhuo.util.crypto.DES;
+import cc.duduhuo.util.digest.Base64;
+import cc.duduhuo.util.digest.CRC32;
 import cc.duduhuo.util.digest.Digest;
 
 /**
@@ -14,6 +16,9 @@ import cc.duduhuo.util.digest.Digest;
  */
 public class TestInJava {
     public static void main(String[] args) throws Exception {
+        System.out.println("============== Base64 ==============");
+        System.out.println("base64 = " + Base64.encode("abc"));
+
         System.out.println("============== Digest ==============");
         System.out.println("md2 = " + Digest.md2Hex("abc", true));
         System.out.println("md5 = " + Digest.md5Hex("abc", true));
@@ -23,6 +28,9 @@ public class TestInJava {
         System.out.println("sha384 = " + Digest.sha384Hex("abc", true));
         System.out.println("sha512 = " + Digest.sha512Hex("abc", true));
         System.out.println("hex = " + Digest.hex("abc", true));
+
+        System.out.println("============== CRC32 ==============");
+        System.out.println("crc32 = " + CRC32.getValue("abc"));
 
         System.out.println("============== AES ==============");
         String input1 = "abc";

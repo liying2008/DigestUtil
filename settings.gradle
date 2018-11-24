@@ -1,3 +1,4 @@
+rootProject.name = 'DigestUtil'
 include 'sample'
 include 'digest-util'
 
