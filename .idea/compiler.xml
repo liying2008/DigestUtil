@@ -2,12 +2,10 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="digest-util-digest-util_main" target="1.8" />
-      <module name="digest-util-digest-util_test" target="1.8" />
-      <module name="digest-util_main" target="1.8" />
-      <module name="digest-util_test" target="1.8" />
-      <module name="sample_main" target="1.8" />
-      <module name="sample_test" target="1.8" />
+      <module name="cc.duduhuo.sample.main" target="1.8" />
+      <module name="cc.duduhuo.sample.test" target="1.8" />
+      <module name="cc.duduhuo.util.digest-util.main" target="1.8" />
+      <module name="cc.duduhuo.util.digest-util.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

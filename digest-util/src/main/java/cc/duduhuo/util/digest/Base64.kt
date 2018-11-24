@@ -77,8 +77,6 @@ object Base64 {
      * @param   src the string to decode
      * @param   file the file to be write
      *
-     * @return  A newly-allocated byte array containing the decoded bytes.
-     *
      * @throws  IllegalArgumentException
      *          if {@code src} is not in valid Base64 scheme
      */
@@ -114,7 +112,6 @@ object Base64 {
      *
      * @param   src the byte array to decode
      * @param   file the file to be write
-     * @return  A newly-allocated byte array containing the decoded bytes.
      *
      * @throws  IllegalArgumentException
      *          if {@code src} is not in valid Base64 scheme
