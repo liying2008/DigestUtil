@@ -1,21 +1,23 @@
-package cc.duduhuo.sample;
+package cc.duduhuo.util.test;
 
+import cc.duduhuo.util.crypto.AES;
+import cc.duduhuo.util.crypto.DES;
 import cc.duduhuo.util.digest.Base64;
 import cc.duduhuo.util.digest.CRC32;
 import cc.duduhuo.util.digest.Digest;
-
-import java.io.File;
+import org.junit.Test;
 
 /**
  * =======================================================
  * Author: liying - liruoer2008@yeah.net
- * Datetime: 2017/11/5 22:33
- * Description: Test in Java
+ * Datetime: 2019/4/13 12:40
+ * Description:
  * Remarks:
  * =======================================================
  */
 public class TestInJava {
-    public static void main(String[] args) {
+    @Test
+    public void test() {
         System.out.println("============== Base64 ==============");
         System.out.println("base64 = " + Base64.encode("abc"));
 
@@ -27,11 +29,25 @@ public class TestInJava {
         System.out.println("sha256 = " + Digest.sha256Hex("abc", true));
         System.out.println("sha384 = " + Digest.sha384Hex("abc", true));
         System.out.println("sha512 = " + Digest.sha512Hex("abc", true));
-        // File digest
-        System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle"), true));
+        System.out.println("hex = " + Digest.hex("abc", true));
 
         System.out.println("============== CRC32 ==============");
         System.out.println("crc32 = " + CRC32.getValue("abc"));
-        System.out.println("crc32 = " + CRC32.getValue(new File("build.gradle")));
+
+        System.out.println("============== AES ==============");
+        String input1 = "abc";
+        String seed1 = "12345678";
+        String e1 = AES.encrypt(input1, seed1);
+        System.out.println("AES encrypt = " + e1);
+        String d1 = AES.decrypt(e1, seed1);
+        System.out.println("AES decrypt = " + d1);
+
+        System.out.println("============== DES ==============");
+        String input2 = "abc";
+        String key2 = "12345678";
+        String e2 = DES.encrypt(input2, key2);
+        System.out.println("DES encrypt = " + e2);
+        String d2 = DES.decrypt(e2, key2);
+        System.out.println("DES decrypt = " + d2);
     }
 }

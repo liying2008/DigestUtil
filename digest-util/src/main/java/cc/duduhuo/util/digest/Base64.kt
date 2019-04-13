@@ -1,7 +1,6 @@
 package cc.duduhuo.util.digest
 
 import java.io.File
-import java.io.IOException
 import java.nio.charset.Charset
 
 /**
@@ -80,7 +79,6 @@ object Base64 {
      * @throws  IllegalArgumentException
      *          if {@code src} is not in valid Base64 scheme
      */
-    @Throws(IOException::class)
     @JvmStatic
     fun decodeToFile(src: String, file: File) {
         val data = borrow.android.util.Base64.decode(src, borrow.android.util.Base64.DEFAULT)
@@ -116,7 +114,6 @@ object Base64 {
      * @throws  IllegalArgumentException
      *          if {@code src} is not in valid Base64 scheme
      */
-    @Throws(IOException::class)
     @JvmStatic
     fun decodeToFile(src: ByteArray, file: File) {
         val data = borrow.android.util.Base64.decode(src, borrow.android.util.Base64.DEFAULT)

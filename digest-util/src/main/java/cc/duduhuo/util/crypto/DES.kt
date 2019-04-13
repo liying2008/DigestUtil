@@ -25,7 +25,6 @@ object DES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: ByteArray, key: ByteArray): String {
         val bt = toEncrypt(input, Arrays.copyOf(key, 16))
         return Base64.encode(bt)
@@ -38,7 +37,6 @@ object DES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: ByteArray, key: String): String {
         val bt = toEncrypt(input, Arrays.copyOf(key.toByteArray(), 16))
         return Base64.encode(bt)
@@ -51,7 +49,6 @@ object DES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: String, key: ByteArray): String {
         val bt = toEncrypt(input.toByteArray(), Arrays.copyOf(key, 16))
         return Base64.encode(bt)
@@ -64,7 +61,6 @@ object DES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: String, key: String): String {
         val bt = toEncrypt(input.toByteArray(), Arrays.copyOf(key.toByteArray(), 16))
         return Base64.encode(bt)
@@ -77,7 +73,6 @@ object DES {
      * @return Decrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun decrypt(input: String, key: ByteArray): String {
         val buf = Base64.decode(input)
         val bt = toDecrypt(buf, Arrays.copyOf(key, 16))
@@ -91,14 +86,12 @@ object DES {
      * @return Decrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun decrypt(input: String, key: String): String {
         val buf = Base64.decode(input)
         val bt = toDecrypt(buf, Arrays.copyOf(key.toByteArray(), 16))
         return String(bt)
     }
 
-    @Throws(Exception::class)
     private fun toEncrypt(data: ByteArray, key: ByteArray): ByteArray {
         val dks = DESKeySpec(key)
         val keyFactory = SecretKeyFactory.getInstance(ALGORITHM)
@@ -108,7 +101,6 @@ object DES {
         return cipher.doFinal(data)
     }
 
-    @Throws(Exception::class)
     private fun toDecrypt(data: ByteArray, key: ByteArray): ByteArray {
         val dks = DESKeySpec(key)
         val keyFactory = SecretKeyFactory.getInstance(ALGORITHM)

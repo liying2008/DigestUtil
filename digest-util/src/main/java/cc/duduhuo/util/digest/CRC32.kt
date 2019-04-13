@@ -14,7 +14,6 @@ import java.util.zip.CRC32
  * =======================================================<br>
  */
 object CRC32 {
-    @Throws(java.lang.Exception::class)
     private fun fileCRC32(file: File, radix: Int = 16): String {
         var fileInputStream: FileInputStream? = null
         val crc32 = CRC32()
@@ -41,7 +40,6 @@ object CRC32 {
      * @param radix
      * @return CRC-32 value
      */
-    @Throws(IllegalArgumentException::class)
     @JvmStatic
     @JvmOverloads
     fun getValue(data: String, charset: Charset = Charsets.UTF_8, radix: Int = 16): String {
@@ -56,7 +54,6 @@ object CRC32 {
      * @param radix
      * @return CRC-32 value
      */
-    @Throws(IllegalArgumentException::class)
     @JvmStatic
     @JvmOverloads
     fun getValue(file: File, radix: Int = 16): String {

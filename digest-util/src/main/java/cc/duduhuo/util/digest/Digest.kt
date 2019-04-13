@@ -28,7 +28,6 @@ object Digest {
         return messageDigest.digest()
     }
 
-    @Throws(java.lang.Exception::class)
     private fun fileDigest(file: File, algorithm: String): ByteArray {
         var fileInputStream: FileInputStream? = null
         val md5 = MessageDigest.getInstance(algorithm)
@@ -394,7 +393,6 @@ object Digest {
      */
     @JvmStatic
     @JvmOverloads
-    @Throws(Exception::class)
     fun sha256Hex(file: File, upperCase: Boolean = false): String {
         val data = fileDigest(file, "SHA-256")
         return hex(data, upperCase)

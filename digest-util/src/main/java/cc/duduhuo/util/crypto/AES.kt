@@ -24,7 +24,6 @@ object AES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: ByteArray, seed: ByteArray): String {
         val key = getRawKey(Arrays.copyOf(seed, 16))
         val result = toEncrypt(key, input)
@@ -38,7 +37,6 @@ object AES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: String, seed: ByteArray): String {
         val key = getRawKey(Arrays.copyOf(seed, 16))
         val result = toEncrypt(key, input.toByteArray())
@@ -52,7 +50,6 @@ object AES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: ByteArray, seed: String): String {
         val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val result = toEncrypt(key, input)
@@ -66,7 +63,6 @@ object AES {
      * @return Encrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun encrypt(input: String, seed: String): String {
         val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val result = toEncrypt(key, input.toByteArray())
@@ -80,7 +76,6 @@ object AES {
      * @return Decrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun decrypt(input: ByteArray, seed: ByteArray): String {
         val key = getRawKey(Arrays.copyOf(seed, 16))
         val encrypted = Base64.decode(input)
@@ -95,7 +90,6 @@ object AES {
      * @return Decrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun decrypt(input: String, seed: ByteArray): String {
         val key = getRawKey(Arrays.copyOf(seed, 16))
         val encrypted = Base64.decode(input)
@@ -110,7 +104,6 @@ object AES {
      * @return Decrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun decrypt(input: ByteArray, seed: String): String {
         val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val encrypted = Base64.decode(input)
@@ -125,7 +118,6 @@ object AES {
      * @return Decrypted password.
      */
     @JvmStatic
-    @Throws(Exception::class)
     fun decrypt(input: String, seed: String): String {
         val key = getRawKey(Arrays.copyOf(seed.toByteArray(), 16))
         val encrypted = Base64.decode(input)
@@ -133,17 +125,14 @@ object AES {
         return String(result)
     }
 
-    @Throws(Exception::class)
     private fun getRawKey(seed: ByteArray): SecretKey = SecretKeySpec(seed, ALGORITHM)
 
-    @Throws(Exception::class)
     private fun toEncrypt(key: SecretKey, input: ByteArray): ByteArray {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.ENCRYPT_MODE, key)
         return cipher.doFinal(input)
     }
 
-    @Throws(Exception::class)
     private fun toDecrypt(key: SecretKey, encrypted: ByteArray): ByteArray {
         val cipher = Cipher.getInstance(TRANSFORMATION)
         cipher.init(Cipher.DECRYPT_MODE, key)
