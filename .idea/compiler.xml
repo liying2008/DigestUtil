@@ -6,6 +6,10 @@
       <module name="cc.duduhuo.sample.test" target="1.8" />
       <module name="cc.duduhuo.util.digest-util.main" target="1.8" />
       <module name="cc.duduhuo.util.digest-util.test" target="1.8" />
+      <module name="DigestUtil.digest-util.main" target="1.8" />
+      <module name="DigestUtil.digest-util.test" target="1.8" />
+      <module name="DigestUtil.sample.main" target="1.8" />
+      <module name="DigestUtil.sample.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

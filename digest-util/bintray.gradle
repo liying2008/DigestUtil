@@ -1,6 +1,3 @@
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven-publish'
-
 group = LIB_GROUP
 version = LIB_VERSION
 
@@ -86,6 +83,8 @@ install {
     }
 }
 
-task findConventions << {
-    println project.getConvention()
+task findConventions {
+    doLast {
+        println project.getConvention()
+    }
 }

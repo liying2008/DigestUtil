@@ -3,12 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DigestUtil.iml" filepath="$PROJECT_DIR$/DigestUtil.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/cc.duduhuo.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/cc.duduhuo.sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/cc.duduhuo.sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/cc.duduhuo.sample.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/cc.duduhuo.sample.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/cc.duduhuo.sample.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/cc.duduhuo.util.digest-util.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/cc.duduhuo.util.digest-util.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/cc.duduhuo.util.digest-util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/cc.duduhuo.util.digest-util.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/cc.duduhuo.util.digest-util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/cc.duduhuo.util.digest-util.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil.digest-util.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil.digest-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil.digest-util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil.digest-util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil.digest-util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/digest-util/DigestUtil.digest-util.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/DigestUtil.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/DigestUtil.sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/DigestUtil.sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/DigestUtil.sample.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/DigestUtil.sample.test.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/DigestUtil.sample.test.iml" />
     </modules>
   </component>
 </project>

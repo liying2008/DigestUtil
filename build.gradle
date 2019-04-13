@@ -1,22 +1,9 @@
-buildscript {
-    ext.kotlin_version = '1.3.10'
-
-    repositories {
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        //mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
-    }
-}
 
 subprojects {
     project.buildDir = rootProject.buildDir.absolutePath + "/" + project.name
 }
 
-task clean(type: Delete) {
+task cleanAll(type: Delete) {
     delete rootProject.buildDir
     subprojects {
         delete "out"
