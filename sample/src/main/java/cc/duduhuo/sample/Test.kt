@@ -3,6 +3,7 @@ package cc.duduhuo.sample
 import cc.duduhuo.util.digest.Base64
 import cc.duduhuo.util.digest.CRC32
 import cc.duduhuo.util.digest.Digest
+import cc.duduhuo.util.digest.Digest.hex
 import java.io.File
 
 /**
@@ -18,15 +19,15 @@ fun main(args: Array<String>) {
     println("base64 = " + Base64.encode("abc"))
 
     println("============== Digest ==============")
-    println("md2 = " + Digest.md2Hex("abc", true))
-    println("md5 = " + Digest.md5Hex("abc", true))
-    println("sha1 = " + Digest.sha1Hex("abc", true))
-    println("sha224 = " + Digest.sha224Hex("abc", true))
-    println("sha256 = " + Digest.sha256Hex("abc", true))
-    println("sha384 = " + Digest.sha384Hex("abc", true))
-    println("sha512 = " + Digest.sha512Hex("abc", true))
+    println("md2 = " + Digest.md2("abc".toByteArray()).hex())
+    println("md5 = " + Digest.md5("abc".toByteArray()).hex())
+    println("sha1 = " + Digest.sha1("abc".toByteArray()).hex())
+    println("sha224 = " + Digest.sha224("abc".toByteArray()).hex())
+    println("sha256 = " + Digest.sha256("abc".toByteArray()).hex())
+    println("sha384 = " + Digest.sha384("abc".toByteArray()).hex())
+    println("sha512 = " + Digest.sha512("abc".toByteArray()).hex())
     // File digest
-    println("sha256 = " + Digest.sha256Hex(File("build.gradle.kts"), true))
+    println("sha256 = " + Digest.sha256(File("build.gradle.kts")).hex())
 
     println("============== CRC32 ==============")
     println("crc32 = " + CRC32.getValue("abc"))

@@ -58,4 +58,4 @@ out/
 build/
 .gradle/
 /local.properties
-build.gradle.kts2
+for-testing-only.txt2
