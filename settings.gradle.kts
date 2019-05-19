@@ -3,7 +3,6 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = 'DigestUtil'
-include 'sample'
-include 'digest-util'
+rootProject.name = "DigestUtil"
+include("digest-util", "sample")
 

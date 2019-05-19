@@ -58,4 +58,4 @@ out/
 build/
 .gradle/
 /local.properties
-build.gradle2
+build.gradle.kts2

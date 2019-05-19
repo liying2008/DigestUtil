@@ -22,7 +22,6 @@ implementation 'cc.duduhuo.util:digest-util:1.1.1'
   <groupId>cc.duduhuo.util</groupId>
   <artifactId>digest-util</artifactId>
   <version>1.1.1</version>
-  <type>pom</type>
 </dependency>
 ```
 
@@ -45,11 +44,11 @@ println("sha256 = " + Digest.sha256Hex("abc", true))
 println("sha384 = " + Digest.sha384Hex("abc", true))
 println("sha512 = " + Digest.sha512Hex("abc", true))
 // File digest
-println("sha256 = " + Digest.sha256Hex(File("build.gradle"), true))
+println("sha256 = " + Digest.sha256Hex(File("build.gradle.kts"), true))
 
 println("============== CRC32 ==============")
 println("crc32 = " + CRC32.getValue("abc"))
-println("crc32 = " + CRC32.getValue(File("build.gradle")))
+println("crc32 = " + CRC32.getValue(File("build.gradle.kts")))
 ```
 
 **In Java**
@@ -67,11 +66,11 @@ System.out.println("sha256 = " + Digest.sha256Hex("abc", true));
 System.out.println("sha384 = " + Digest.sha384Hex("abc", true));
 System.out.println("sha512 = " + Digest.sha512Hex("abc", true));
 // File digest
-System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle"), true));
+System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle.kts"), true));
 
 System.out.println("============== CRC32 ==============");
 System.out.println("crc32 = " + CRC32.getValue("abc"));
-System.out.println("crc32 = " + CRC32.getValue(new File("build.gradle")));
+System.out.println("crc32 = " + CRC32.getValue(new File("build.gradle.kts")));
 ```
 
 ## 3. ChangeLog

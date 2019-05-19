@@ -19,17 +19,17 @@ public class FileTestInJava {
     @Test
     public void test() {
         System.out.println("============== Base64 ==============");
-        System.out.println("base64 = " + Base64.encode(new File("build.gradle")));
-        Base64.decodeToFile(Base64.encode(new File("build.gradle")), new File("../build.gradle2"));
+        System.out.println("base64 = " + Base64.encode(new File("build.gradle.kts")));
+        Base64.decodeToFile(Base64.encode(new File("build.gradle.kts")), new File("../build.gradle.kts2"));
         System.out.println("============== Digest ==============");
         long start = System.currentTimeMillis();
-        System.out.println("md2 = " + Digest.md2Hex(new File("build.gradle"), true));
-        System.out.println("md5 = " + Digest.md5Hex(new File("build.gradle"), true));
-        System.out.println("sha1 = " + Digest.sha1Hex(new File("build.gradle"), true));
-        System.out.println("sha224 = " + Digest.sha224Hex(new File("build.gradle"), true));
-        System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle"), true));
-        System.out.println("sha384 = " + Digest.sha384Hex(new File("build.gradle"), true));
-        System.out.println("sha512 = " + Digest.sha512Hex(new File("build.gradle"), true));
+        System.out.println("md2 = " + Digest.md2Hex(new File("build.gradle.kts"), true));
+        System.out.println("md5 = " + Digest.md5Hex(new File("build.gradle.kts"), true));
+        System.out.println("sha1 = " + Digest.sha1Hex(new File("build.gradle.kts"), true));
+        System.out.println("sha224 = " + Digest.sha224Hex(new File("build.gradle.kts"), true));
+        System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle.kts"), true));
+        System.out.println("sha384 = " + Digest.sha384Hex(new File("build.gradle.kts"), true));
+        System.out.println("sha512 = " + Digest.sha512Hex(new File("build.gradle.kts"), true));
         long end = System.currentTimeMillis();
         System.out.println("time: " + (end - start) / 1000.0);
 

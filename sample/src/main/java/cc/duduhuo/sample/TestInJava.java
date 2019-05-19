@@ -28,10 +28,10 @@ public class TestInJava {
         System.out.println("sha384 = " + Digest.sha384Hex("abc", true));
         System.out.println("sha512 = " + Digest.sha512Hex("abc", true));
         // File digest
-        System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle"), true));
+        System.out.println("sha256 = " + Digest.sha256Hex(new File("build.gradle.kts"), true));
 
         System.out.println("============== CRC32 ==============");
         System.out.println("crc32 = " + CRC32.getValue("abc"));
-        System.out.println("crc32 = " + CRC32.getValue(new File("build.gradle")));
+        System.out.println("crc32 = " + CRC32.getValue(new File("build.gradle.kts")));
     }
 }
