@@ -27,9 +27,9 @@ fun main(args: Array<String>) {
     println("sha384 = " + Digest.sha384("abc".toByteArray()).hex())
     println("sha512 = " + Digest.sha512("abc".toByteArray()).hex())
     // File digest
-    println("sha256 = " + Digest.sha256(File("build.gradle.kts")).hex())
+    println("sha256 = " + Digest.sha256(File("build.gradle.kts").inputStream()).hex())
 
     println("============== CRC32 ==============")
     println("crc32 = " + CRC32.getValue("abc"))
-    println("crc32 = " + CRC32.getValue(File("build.gradle.kts")))
+    println("crc32 = " + CRC32.getValue(File("build.gradle.kts").inputStream()))
 }

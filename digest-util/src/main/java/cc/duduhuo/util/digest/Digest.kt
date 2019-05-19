@@ -1,7 +1,7 @@
 package cc.duduhuo.util.digest
 
 import java.io.File
-import java.io.FileInputStream
+import java.io.InputStream
 import java.security.MessageDigest
 
 /**
@@ -22,33 +22,25 @@ object Digest {
         return messageDigest.digest()
     }
 
-    private fun fileDigest(file: File, algorithm: String): ByteArray {
-        var fileInputStream: FileInputStream? = null
-        val md5 = MessageDigest.getInstance(algorithm)
-        try {
-            fileInputStream = file.inputStream()
-            val buffer = ByteArray(8192)
-            var length = fileInputStream.read(buffer)
-            while (length != -1) {
-                md5.update(buffer, 0, length)
-                length = fileInputStream.read(buffer)
-            }
-            return md5.digest()
-        } catch (e: Exception) {
-            throw e
-        } finally {
-            fileInputStream?.close()
+    private fun digest(inputStream: InputStream, algorithm: String): ByteArray {
+        val messageDigest = MessageDigest.getInstance(algorithm)
+        val buffer = ByteArray(8192)
+        var length = inputStream.read(buffer)
+        while (length > -1) {
+            messageDigest.update(buffer, 0, length)
+            length = inputStream.read(buffer)
         }
+        return messageDigest.digest()
     }
 
     /**
      * Calculates the MD2 digest and returns the value as a 16 element <code>byte[]</code>.
-     * @param file File to digest
+     * @param data Data to digest
      * @return MD2 digest
      */
     @JvmStatic
-    fun md2(file: File): ByteArray {
-        return fileDigest(file, "MD2")
+    fun md2(data: InputStream): ByteArray {
+        return digest(data, "MD2")
     }
 
     /**
@@ -64,12 +56,12 @@ object Digest {
     /**
      * Calculates the MD5 digest and returns the value as a 16 element <code>byte[]</code>.
      *
-     * @param file File to digest
+     * @param data Data to digest
      * @return MD5 digest
      */
     @JvmStatic
-    fun md5(file: File): ByteArray {
-        return fileDigest(file, "MD5")
+    fun md5(data: InputStream): ByteArray {
+        return digest(data, "MD5")
     }
 
     /**
@@ -86,12 +78,12 @@ object Digest {
     /**
      * Calculates the SHA-1 digest and returns the value as a <code>byte[]</code>.
      *
-     * @param file File to digest
+     * @param data Data to digest
      * @return SHA-1 digest
      */
     @JvmStatic
-    fun sha1(file: File): ByteArray {
-        return fileDigest(file, "SHA-1")
+    fun sha1(data: InputStream): ByteArray {
+        return digest(data, "SHA-1")
     }
 
     /**
@@ -108,12 +100,12 @@ object Digest {
     /**
      * Calculates the SHA-224 digest and returns the value as a <code>byte[]</code>.
      *
-     * @param file File to digest
+     * @param data Data to digest
      * @return SHA-224 digest
      */
     @JvmStatic
-    fun sha224(file: File): ByteArray {
-        return fileDigest(file, "SHA-224")
+    fun sha224(data: InputStream): ByteArray {
+        return digest(data, "SHA-224")
     }
 
     /**
@@ -130,12 +122,12 @@ object Digest {
     /**
      * Calculates the SHA-256 digest and returns the value as a <code>byte[]</code>.
      *
-     * @param file File to digest
+     * @param data Data to digest
      * @return SHA-256 digest
      */
     @JvmStatic
-    fun sha256(file: File): ByteArray {
-        return fileDigest(file, "SHA-256")
+    fun sha256(data: InputStream): ByteArray {
+        return digest(data, "SHA-256")
     }
 
     /**
@@ -152,12 +144,12 @@ object Digest {
     /**
      * Calculates the SHA-384 digest and returns the value as a <code>byte[]</code>.
      *
-     * @param file File to digest
+     * @param data Data to digest
      * @return SHA-384 digest
      */
     @JvmStatic
-    fun sha384(file: File): ByteArray {
-        return fileDigest(file, "SHA-384")
+    fun sha384(data: InputStream): ByteArray {
+        return digest(data, "SHA-384")
     }
 
     /**
@@ -174,12 +166,12 @@ object Digest {
     /**
      * Calculates the SHA-512 digest and returns the value as a <code>byte[]</code>.
      *
-     * @param file File to digest
+     * @param data Data to digest
      * @return SHA-512 digest
      */
     @JvmStatic
-    fun sha512(file: File): ByteArray {
-        return fileDigest(file, "SHA-512")
+    fun sha512(data: InputStream): ByteArray {
+        return digest(data, "SHA-512")
     }
 
     /**

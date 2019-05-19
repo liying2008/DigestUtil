@@ -4,6 +4,8 @@ import cc.duduhuo.util.digest.Base64;
 import cc.duduhuo.util.digest.CRC32;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 import static cc.duduhuo.util.digest.Digest.*;
 
@@ -16,7 +18,7 @@ import static cc.duduhuo.util.digest.Digest.*;
  * =======================================================
  */
 public class TestInJava {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         System.out.println("============== Base64 ==============");
         System.out.println("base64 = " + Base64.encode("abc"));
 
@@ -29,10 +31,10 @@ public class TestInJava {
         System.out.println("sha384 = " + hex(sha384("abc".getBytes())));
         System.out.println("sha512 = " + hex(sha512("abc".getBytes())));
         // File digest
-        System.out.println("sha256 = " + hex(sha256(new File("build.gradle.kts"))));
+        System.out.println("sha256 = " + hex(sha256(new FileInputStream(new File("build.gradle.kts")))));
 
         System.out.println("============== CRC32 ==============");
         System.out.println("crc32 = " + CRC32.getValue("abc"));
-        System.out.println("crc32 = " + CRC32.getValue(new File("build.gradle.kts")));
+        System.out.println("crc32 = " + CRC32.getValue(new FileInputStream(new File("build.gradle.kts"))));
     }
 }
