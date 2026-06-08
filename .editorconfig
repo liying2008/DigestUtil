@@ -1,0 +1,59 @@
+# Top-most EditorConfig file
+root = true
+
+# 适用于所有文件的基础配置
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+max_line_length = 240
+
+# 适用于 Java 源码
+[*.java]
+max_line_length = 240
+ij_java_names_count_to_use_import_on_demand = 999
+ij_java_imports_layout = *, |, javax.**, |, java.**, |, $*
+ij_java_class_count_to_use_import_on_demand = 999
+
+# 适用于 Kotlin 源码
+[*.kt]
+indent_size = 4
+max_line_length = 240
+ij_kotlin_name_count_to_use_import_on_demand = 999
+ij_kotlin_packages_to_use_import_on_demand = unset
+continuation_indent_size = 4
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
+
+# 适用于 Kotlin 脚本
+[*.kts]
+indent_size = 4
+continuation_indent_size = 4
+
+# 适用于 Gradle 构建脚本
+[*.{gradle,gradle.kts}]
+indent_size = 4
+
+# 适用于 Markdown 文件
+[*.md]
+trim_trailing_whitespace = false
+
+# 适用于 JSON / YAML 等数据配置文件
+[*.{json,yml,yaml}]
+indent_size = 2
+
+# 适用于属性文件
+[*.properties]
+indent_style = space
+indent_size = 2
+
+# 适用于 Shell 脚本
+[*.sh]
+end_of_line = lf
+
+# 适用于 Windows 批处理脚本
+[*.bat]
+end_of_line = crlf
