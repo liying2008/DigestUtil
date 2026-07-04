@@ -9,6 +9,7 @@ import cc.duduhuo.util.digest.Base64;
 import cc.duduhuo.util.digest.CRC32;
 import cc.duduhuo.util.digest.Digest;
 import cc.duduhuo.util.digest.Hex;
+import cc.duduhuo.util.digest.Hmac;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +37,17 @@ public class DigestUtilDemo {
         System.out.println("[Digest] sha3_512 = " + Hex.hex(Digest.sha3_512("abc")));
         // File digest
         System.out.println("[Digest] sha256 = " + Hex.hex(Digest.sha256(new File("build.gradle.kts"))));
+
+        System.out.println("============== Hmac ==============");
+        byte[] key = "a key".getBytes();
+        System.out.println("[Hmac] hmacMd5 = " + Hex.hex(Hmac.hmacMd5("abc", key)));
+        System.out.println("[Hmac] hmacSha1 = " + Hex.hex(Hmac.hmacSha1("abc", key)));
+        System.out.println("[Hmac] hmacSha224 = " + Hex.hex(Hmac.hmacSha224("abc", key)));
+        System.out.println("[Hmac] hmacSha256 = " + Hex.hex(Hmac.hmacSha256("abc", key)));
+        System.out.println("[Hmac] hmacSha384 = " + Hex.hex(Hmac.hmacSha384("abc", key)));
+        System.out.println("[Hmac] hmacSha512 = " + Hex.hex(Hmac.hmacSha512("abc", key)));
+        // File Hmac
+        System.out.println("[Hmac] hmacSha256 = " + Hex.hex(Hmac.hmacSha256(new File("build.gradle.kts"), key)));
 
         System.out.println("============== CRC32 ==============");
         System.out.println("[CRC32] value = " + CRC32.getValue("abc"));

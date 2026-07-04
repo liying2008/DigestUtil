@@ -8,6 +8,12 @@ package cc.duduhuo.util.sample
 import cc.duduhuo.util.digest.ktx.base64
 import cc.duduhuo.util.digest.ktx.crc32
 import cc.duduhuo.util.digest.ktx.hex
+import cc.duduhuo.util.digest.ktx.hmacMd5
+import cc.duduhuo.util.digest.ktx.hmacSha1
+import cc.duduhuo.util.digest.ktx.hmacSha224
+import cc.duduhuo.util.digest.ktx.hmacSha256
+import cc.duduhuo.util.digest.ktx.hmacSha384
+import cc.duduhuo.util.digest.ktx.hmacSha512
 import cc.duduhuo.util.digest.ktx.md2
 import cc.duduhuo.util.digest.ktx.md5
 import cc.duduhuo.util.digest.ktx.sha1
@@ -44,7 +50,18 @@ fun main() {
     println("[Digest] sha3_384 = " + "abc".sha3_384().hex())
     println("[Digest] sha3_512 = " + "abc".sha3_512().hex())
     // File digest
-    println("sha256 = " + File("build.gradle.kts").sha256().hex())
+    println("[Digest] sha256 = " + File("build.gradle.kts").sha256().hex())
+
+    println("============== Hmac ==============")
+    val key = "a key".toByteArray()
+    println("[Hmac] hmacMd5 = " + "abc".hmacMd5(key).hex())
+    println("[Hmac] hmacSha1 = " + "abc".hmacSha1(key).hex())
+    println("[Hmac] hmacSha224 = " + "abc".hmacSha224(key).hex())
+    println("[Hmac] hmacSha256 = " + "abc".hmacSha256(key).hex())
+    println("[Hmac] hmacSha384 = " + "abc".hmacSha384(key).hex())
+    println("[Hmac] hmacSha512 = " + "abc".hmacSha512(key).hex())
+    // File digest
+    println("[Hmac] hmacSha256 = " + File("build.gradle.kts").hmacSha256(key).hex())
 
     println("============== CRC32 ==============")
     println("[CRC32] value = " + "abc".crc32())

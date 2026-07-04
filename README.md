@@ -4,7 +4,7 @@
 [![Maven Central Version](https://img.shields.io/maven-central/v/cc.duduhuo.util/digest-util-ktx?label=digest-util-ktx)](https://central.sonatype.com/artifact/cc.duduhuo.util/digest-util-ktx)
 [![Maven Central Version](https://img.shields.io/maven-central/v/cc.duduhuo.util/crypto-util?label=crypto-util)](https://central.sonatype.com/artifact/cc.duduhuo.util/crypto-util)
 
-**Digest** / **Base64** / **Crypto** utils for Java(Kotlin) and Android.
+**Digest** / **Hmac** / **Base64** / **Crypto** utils for Java(Kotlin) and Android.
 
 
 ## digest-util
@@ -14,7 +14,7 @@
 - Use Gradle  
 
 ```kotlin  
-implementation("cc.duduhuo.util:digest-util:2.0.0")
+implementation("cc.duduhuo.util:digest-util:2.1.0")
 ```
 
 - Use Maven  
@@ -23,7 +23,7 @@ implementation("cc.duduhuo.util:digest-util:2.0.0")
 <dependency>
   <groupId>cc.duduhuo.util</groupId>
   <artifactId>digest-util</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
 </dependency>
 ```
 
@@ -32,7 +32,7 @@ implementation("cc.duduhuo.util:digest-util:2.0.0")
 - Use Gradle
 
 ```kotlin  
-implementation("cc.duduhuo.util:digest-util-ktx:2.0.0")
+implementation("cc.duduhuo.util:digest-util-ktx:2.1.0")
 ```
 
 - Use Maven
@@ -41,13 +41,13 @@ implementation("cc.duduhuo.util:digest-util-ktx:2.0.0")
 <dependency>
   <groupId>cc.duduhuo.util</groupId>
   <artifactId>digest-util-ktx</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
 </dependency>
 ```
 
 ### 2. Use
 
-Call the static method in `Digest` / `Base64` / `CRC32` .
+Call the static method in `Digest` / `Hmac` / `Base64` / `CRC32` .
 
 - **Kotlin Demo**
 
@@ -72,7 +72,18 @@ println("[Digest] sha3_256 = " + "abc".sha3_256().hex())
 println("[Digest] sha3_384 = " + "abc".sha3_384().hex())
 println("[Digest] sha3_512 = " + "abc".sha3_512().hex())
 // File digest
-println("sha256 = " + File("build.gradle.kts").sha256().hex())
+println("[Digest] sha256 = " + File("build.gradle.kts").sha256().hex())
+
+println("============== Hmac ==============")
+val key = "a key".toByteArray()
+println("[Hmac] hmacMd5 = " + "abc".hmacMd5(key).hex())
+println("[Hmac] hmacSha1 = " + "abc".hmacSha1(key).hex())
+println("[Hmac] hmacSha224 = " + "abc".hmacSha224(key).hex())
+println("[Hmac] hmacSha256 = " + "abc".hmacSha256(key).hex())
+println("[Hmac] hmacSha384 = " + "abc".hmacSha384(key).hex())
+println("[Hmac] hmacSha512 = " + "abc".hmacSha512(key).hex())
+// File digest
+println("[Hmac] hmacSha256 = " + File("build.gradle.kts").hmacSha256(key).hex())
 
 println("============== CRC32 ==============")
 println("[CRC32] value = " + "abc".crc32())
@@ -103,6 +114,17 @@ System.out.println("[Digest] sha3_384 = " + Hex.hex(Digest.sha3_384("abc")));
 System.out.println("[Digest] sha3_512 = " + Hex.hex(Digest.sha3_512("abc")));
 // File digest
 System.out.println("[Digest] sha256 = " + Hex.hex(Digest.sha256(new File("build.gradle.kts"))));
+
+System.out.println("============== Hmac ==============");
+byte[] key = "a key".getBytes();
+System.out.println("[Hmac] hmacMd5 = " + Hex.hex(Hmac.hmacMd5("abc", key)));
+System.out.println("[Hmac] hmacSha1 = " + Hex.hex(Hmac.hmacSha1("abc", key)));
+System.out.println("[Hmac] hmacSha224 = " + Hex.hex(Hmac.hmacSha224("abc", key)));
+System.out.println("[Hmac] hmacSha256 = " + Hex.hex(Hmac.hmacSha256("abc", key)));
+System.out.println("[Hmac] hmacSha384 = " + Hex.hex(Hmac.hmacSha384("abc", key)));
+System.out.println("[Hmac] hmacSha512 = " + Hex.hex(Hmac.hmacSha512("abc", key)));
+// File Hmac
+System.out.println("[Hmac] hmacSha256 = " + Hex.hex(Hmac.hmacSha256(new File("build.gradle.kts"), key)));
 
 System.out.println("============== CRC32 ==============");
 System.out.println("[CRC32] value = " + CRC32.getValue("abc"));
