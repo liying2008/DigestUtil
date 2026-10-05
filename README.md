@@ -144,7 +144,7 @@ System.out.println("[CRC32] value = " + CRC32.getValue(new File("build.gradle.kt
 - Use Gradle  
 
 ```kotlin  
-implementation("cc.duduhuo.util:crypto-util:1.0.0")
+implementation("cc.duduhuo.util:crypto-util:1.1.0")
 ```
 
 - Use Maven  
@@ -153,7 +153,7 @@ implementation("cc.duduhuo.util:crypto-util:1.0.0")
 <dependency>
   <groupId>cc.duduhuo.util</groupId>
   <artifactId>crypto-util</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -175,9 +175,11 @@ import cc.duduhuo.util.crypto.Blowfish;
 import cc.duduhuo.util.crypto.ChaCha20;
 import cc.duduhuo.util.crypto.ChaCha20Poly1305;
 import cc.duduhuo.util.crypto.DES;
+import cc.duduhuo.util.crypto.kdf.Pbkdf2;
 import cc.duduhuo.util.crypto.RC2;
 import cc.duduhuo.util.crypto.RC4;
 import cc.duduhuo.util.crypto.TripleDES;
+import cc.duduhuo.util.digest.Hex;
 
 public class CryptoUtilDemo {
     public static void aes() {
@@ -273,7 +275,19 @@ public class CryptoUtilDemo {
         System.out.println("[ChaCha20-Poly1305] decrypted: " + pt); // [ChaCha20-Poly1305] decrypted: 中文abc123
     }
 
+    public static void pbkdf2() {
+        System.out.println("============== PBKDF2 ==============");
+        byte[] salt = "a salt".getBytes();
+        System.out.println("[PBKDF2] pbkdf2WithHmacSha1 = " + Hex.hex(Pbkdf2.pbkdf2WithHmacSha1("a password", salt, 10000, 256)));
+        System.out.println("[PBKDF2] pbkdf2WithHmacSha256 = " + Hex.hex(Pbkdf2.pbkdf2WithHmacSha256("a password", salt, 10000, 256)));
+        System.out.println("[PBKDF2] pbkdf2WithHmacSha384 = " + Hex.hex(Pbkdf2.pbkdf2WithHmacSha384("a password", salt, 10000, 384)));
+        System.out.println("[PBKDF2] pbkdf2WithHmacSha512 = " + Hex.hex(Pbkdf2.pbkdf2WithHmacSha512("a password", salt, 10000, 512)));
+        // Custom algorithm
+        System.out.println("[PBKDF2] pbkdf2 = " + Hex.hex(Pbkdf2.pbkdf2("a password", salt, 10000, 256, "PBKDF2WithHmacSHA256")));
+    }
+
     public static void main(String[] args) {
+        // Ciphers
         aes();
         des();
         tripleDes();
@@ -282,6 +296,8 @@ public class CryptoUtilDemo {
         rc4();
         chacha20();
         chacha20Poly1305();
+        // KDF
+        pbkdf2();
     }
 }
 ```

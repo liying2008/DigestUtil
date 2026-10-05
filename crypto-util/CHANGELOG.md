@@ -1,3 +1,8 @@
+## v1.1.0 (2026-10-05)
+
+- 新增 `Pbkdf2` 系列工具方法（含 `pbkdf2WithHmacSha1` / `pbkdf2WithHmacSha256` / `pbkdf2WithHmacSha384` / `pbkdf2WithHmacSha512`）。
+- 更新依赖 `digest-util` 的版本至 v2.1.0 。
+
 ## v1.0.0 (2026-06-08)
 
 - `AES.encrypt()` -> `new AES.ECB().keyLength(16).keyPadding((byte) 0).encrypt()`， `decrypt` 同理。
